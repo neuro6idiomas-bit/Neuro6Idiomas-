@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Neuro6Idiomas — uma nova experiência para aprender idiomas com leitura, áudio e associação.">
+  <title>Neuro6Idiomas | Aprenda de um jeito diferente</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:#050505;color:#f5f5f5;line-height:1.6;overflow-x:hidden
+    }
+    body:before{
+      content:"";position:fixed;inset:-30%;z-index:-2;
+      background:
+        radial-gradient(circle at 50% 10%,rgba(255,255,255,.08),transparent 28%),
+        radial-gradient(circle at 10% 70%,rgba(120,120,120,.07),transparent 25%),
+        radial-gradient(circle at 90% 80%,rgba(255,255,255,.05),transparent 25%);
+      filter:blur(20px)
+    }
+    body:after{
+      content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+                 linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:50px 50px;mask-image:linear-gradient(to bottom,black,transparent 80%)
+    }
+    .wrap{width:min(1080px,92%);margin:auto}
+    header{padding:26px 0;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
+    .logo{
+      width:42px;height:42px;border:1px solid rgba(255,255,255,.22);border-radius:13px;
+      display:grid;place-items:center;background:linear-gradient(145deg,#191919,#080808);
+      box-shadow:0 10px 35px rgba(0,0,0,.5);font-size:21px
+    }
+    .badge{font-size:12px;color:#aaa;border:1px solid #292929;padding:7px 11px;border-radius:999px}
+    .hero{text-align:center;padding:86px 0 74px}
+    .eyebrow{
+      display:inline-flex;gap:8px;align-items:center;color:#bbb;font-size:13px;
+      border:1px solid #252525;background:#0c0c0c;padding:8px 13px;border-radius:999px;margin-bottom:24px
+    }
+    .dot{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 14px #fff}
+    h1{font-size:clamp(42px,8vw,82px);line-height:.98;letter-spacing:-3px;margin-bottom:24px}
+    .gradient{background:linear-gradient(100deg,#fff,#777);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{max-width:690px;margin:0 auto;color:#a7a7a7;font-size:18px}
+    .actions{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:34px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:15px 23px;border-radius:13px;text-decoration:none;font-weight:800;
+      transition:.25s;border:1px solid #303030
+    }
+    .btn-primary{background:#fff;color:#050505;box-shadow:0 12px 35px rgba(255,255,255,.10)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 45px rgba(255,255,255,.16)}
+    .btn-secondary{color:#eee;background:#0d0d0d}
+    .btn-secondary:hover{background:#151515}
+    .note{font-size:12px;color:#777;margin-top:15px}
+    section{padding:72px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{
+      background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+      border:1px solid #242424;border-radius:22px;padding:28px;
+      box-shadow:0 20px 60px rgba(0,0,0,.25)
+    }
+    .icon{font-size:28px;margin-bottom:18px}
+    .card h3{font-size:19px;margin-bottom:8px}
+    .card p{color:#999;font-size:14px}
+    .section-title{font-size:clamp(29px,5vw,45px);letter-spacing:-1.5px;margin-bottom:12px}
+    .section-sub{color:#929292;max-width:650px;margin-bottom:28px}
+    .languages{display:flex;flex-wrap:wrap;gap:10px}
+    .lang{padding:11px 14px;background:#0d0d0d;border:1px solid #252525;border-radius:12px;color:#ddd}
+    .story{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
+    .story-main{min-height:330px;display:flex;flex-direction:column;justify-content:flex-end}
+    .quote{font-size:clamp(27px,4vw,43px);line-height:1.08;letter-spacing:-1px;margin-bottom:16px}
+    .quote em{color:#aaa;font-style:normal}
+    .security{border-color:#343434;background:linear-gradient(145deg,#111,#080808)}
+    .security strong{color:#fff}
+    .security p{color:#aaa}
+    .security ul{margin:17px 0 0 20px;color:#999}
+    .security li{margin:7px 0}
+    .download{margin-top:20px;text-align:center;border:1px solid #292929;border-radius:26px;padding:42px 24px;background:radial-gradient(circle at 50% 0,#181818,#080808 58%)}
+    .download h2{font-size:34px;letter-spacing:-1px}
+    .version{display:inline-block;margin:10px 0 22px;color:#aaa;font-size:13px}
+    footer{padding:35px 0 50px;color:#666;text-align:center;font-size:12px;border-top:1px solid #151515}
+    @media(max-width:760px){
+      header{padding:18px 0}.badge{display:none}
+      .hero{padding:62px 0 50px}
+      h1{letter-spacing:-2px}
+      .hero p{font-size:16px}
+      .grid,.story{grid-template-columns:1fr}
+      section{padding:52px 0}
+      .card{padding:23px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="logo">🧠</div><span>Neuro6Idiomas</span></div>
+      <div class="badge">Android • V10.0</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="dot"></span> Uma nova experiência para aprender idiomas</div>
+        <h1>Leia. Escute.<br><span class="gradient">Associe. Aprenda.</span></h1>
+        <p>Uma experiência de aprendizado que combina leitura, áudio e narrativa para aproximar você de seis idiomas de uma maneira simples e envolvente.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/neuro6idiomas-bit/Neuro6Idiomas-/releases/download/V10.0/Neuro6Idiomas.apk">⬇️ BAIXAR APK</a>
+          <a class="btn btn-secondary" href="#sobre">Conhecer o aplicativo</a>
+        </div>
+        <div class="note">Download direto • Versão V10.0 • Projeto independente</div>
+      </section>
+
+      <section id="sobre">
+        <h2 class="section-title">Aprender pode ser uma experiência.</h2>
+        <p class="section-sub">O Neuro6Idiomas foi criado para transformar o contato com novos idiomas em uma experiência mais natural, combinando conteúdo, áudio e associação.</p>
+        <div class="grid">
+          <div class="card"><div class="icon">📖</div><h3>Aprenda através de uma história</h3><p>O conteúdo tem como base o livro <strong>O Brilho Vivo</strong>, levando o aprendizado para dentro de uma narrativa.</p></div>
+          <div class="card"><div class="icon">🎧</div><h3>Texto + áudio</h3><p>Leia a frase e acompanhe sua versão no idioma estudado com áudio, criando uma experiência integrada.</p></div>
+          <div class="card"><div class="icon">🌎</div><h3>Seis idiomas</h3><p>Uma única experiência para explorar português, inglês, espanhol, francês, italiano e alemão.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="story">
+          <div class="card story-main">
+            <div class="quote">“O objetivo não é apenas <em>decorar palavras</em>.<br>É criar conexões.”</div>
+            <p style="color:#999">Neuro6Idiomas • O Brilho Vivo</p>
+          </div>
+          <div class="card">
+            <div class="icon">🌐</div>
+            <h3>Idiomas disponíveis</h3>
+            <p style="margin-bottom:18px">Escolha o idioma que deseja aprender e acompanhe a experiência.</p>
+            <div class="languages">
+              <span class="lang">🇧🇷 Português</span>
+              <span class="lang">🇺🇸 Inglês</span>
+              <span class="lang">🇪🇸 Espanhol</span>
+              <span class="lang">🇫🇷 Francês</span>
+              <span class="lang">🇮🇹 Italiano</span>
+              <span class="lang">🇩🇪 Alemão</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="card security">
+          <div class="icon">🔐</div>
+          <h2 class="section-title" style="font-size:32px">Por que o Android pode mostrar um alerta?</h2>
+          <p>Esta versão do Neuro6Idiomas é distribuída diretamente pelo desenvolvedor, através de um arquivo APK, e <strong>não está sendo instalada pela Google Play Store</strong>.</p>
+          <p style="margin-top:12px">Por isso, dependendo das configurações e da versão do Android, o sistema pode exibir uma mensagem de segurança ao tentar instalar o aplicativo.</p>
+          <ul>
+            <li>O alerta está relacionado à instalação fora da Google Play.</li>
+            <li>O APK é disponibilizado através do link oficial desta página.</li>
+            <li>Antes de instalar qualquer APK, confirme sempre a origem do arquivo.</li>
+          </ul>
+          <p style="margin-top:17px;font-size:13px">Transparência é parte da experiência. O aviso do Android não deve ser ignorado: leia a mensagem apresentada pelo sistema e instale somente se você confiar na origem do arquivo.</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="download">
+          <div class="icon">📱</div>
+          <h2>Pronto para experimentar?</h2>
+          <span class="version">Neuro6Idiomas • Android • V10.0</span>
+          <div>
+            <a class="btn btn-primary" href="https://github.com/neuro6idiomas-bit/Neuro6Idiomas-/releases/download/V10.0/Neuro6Idiomas.apk">⬇️ BAIXAR NEURO6IDIOMAS</a>
+          </div>
+          <p class="note">O download é feito diretamente do arquivo APK oficial disponibilizado pelo projeto.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Neuro6Idiomas • Projeto independente<br>
+      Leia • Escute • Associe • Aprenda
+    </footer>
+  </div>
+</body>
+</html>
